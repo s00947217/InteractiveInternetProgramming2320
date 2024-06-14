@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Fibonacci Sequence</title>
+    <script>
+        "use strict";
+
+        // Ask user how many numbers in the Fibonacci sequence
+        let fibNum = prompt("How many numbers in the sequence?");
+        fibNum = parseFloat(fibNum);
+
+        // Check if the input is valid
+        if (isNaN(fibNum) || fibNum < 3) {
+            alert("The sequence must have 3 or more numbers.");
+        } else {
+            let fibArray = [0, 1];  // Array to hold the Fibonacci numbers
+
+            // Fill the array with the Fibonacci sequence
+            for (let n = 2; n < fibNum; n++) {
+                fibArray[n] = fibArray[n - 1] + fibArray[n - 2];
+            }
+
+            // Write out the results
+            for (let n = 0; n < fibNum; n++) {
+                document.write(fibArray[n] + "<br>");
+            }
+
+            // Calculate and display the ratio = last number / second to last number
+            let ratio = fibArray[fibNum - 1] / fibArray[fibNum - 2];
+            document.write("Ratio: " + ratio);
+        }
+    </script>
+</head>
+<body>
+    <h2>Manbir Kheira - IT 2320 - Lab 1</h2>
+</body>
+</html>
