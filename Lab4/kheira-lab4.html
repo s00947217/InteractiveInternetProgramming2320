@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Kheira-Lab4.html</title>
+    <title>kheira-lab4.html</title>
     <style>
         #stopwatch {
             font-size: 2em;
@@ -21,17 +21,20 @@
     <script>
         "use strict";
 
+        // Global variables to track time and state of the timer
         let minutes = 0;
         let seconds = 0;
         let tenths = 0;
         let timer = null;
         let running = false;
 
+        // Function to update the stopwatch display
         function updateDisplay() {
             document.getElementById('stopwatch').innerHTML = 
                 `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${tenths}`;
         }
 
+        // Function to start the timer
         function startTimer() {
             if (!running) {
                 running = true;
@@ -39,11 +42,13 @@
             }
         }
 
+        // Function to stop the timer
         function stopTimer() {
             clearInterval(timer);
             running = false;
         }
 
+        // Function to reset the timer
         function resetTimer() {
             stopTimer();
             minutes = 0;
@@ -52,6 +57,7 @@
             updateDisplay();
         }
 
+        // Function to increment time and update display
         function showTimer() {
             tenths++;
             if (tenths > 9) {
@@ -65,6 +71,7 @@
             updateDisplay();
         }
 
+        // Event listeners for the buttons
         document.getElementById('start').addEventListener('click', startTimer);
         document.getElementById('stop').addEventListener('click', stopTimer);
         document.getElementById('reset').addEventListener('click', resetTimer);
