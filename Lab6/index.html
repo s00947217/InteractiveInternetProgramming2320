@@ -8,40 +8,41 @@
     </style>
     <script>
         "use strict"
+        // Initializing the array with a mix of strings and numbers
         let arr = ["dog", "cat", 10, 20, "horse"];
 
-        // remove the first element of the array
+        // Removing the first element of the array (expected "dog")
         arr.shift();
 
-        // insert "fish" at the beginning of the array
+        // Inserting "fish" at the beginning of the array
         arr.unshift("fish");
 
-        // insert the number 111 at the beginning of the array
+        // Adding the number 111 to the start of the array
         arr.unshift(111);
 
-        // remove the last element of the array
+        // Removing the last element of the array (expected "horse")
         arr.pop();
 
-        // append the number 999 to the end of the array
+        // Adding the number 999 to the end of the array
         arr.push(999);
 
-        // sort the array
+        // Sorting the array in ascending order
         arr.sort();
 
-        // reverse the order of the sorted array
+        // Reversing the order of the sorted array to get descending order
         arr.reverse();
 
+        // Setting up the event listener for the button click
         window.onload = function() {
-            // Add event listener to the button
             document.getElementById("button").addEventListener("click", display);
         }
         
         // Function to display the final array and the index of "cat"
         function display() {
-            // Display the final array
+            // Displaying the final array in the span with id "arr"
             document.getElementById("arr").textContent = arr.join(", ");
             
-            // Find and display the index of the word "cat"
+            // Finding the index of the word "cat" in the final array
             let catIndex = arr.indexOf("cat");
             document.getElementById("cat").textContent = catIndex;
         }
