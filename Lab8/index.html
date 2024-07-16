@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manbir Kheira - IT 2320 - Lab 8</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        #weatherInfo {
+            margin-top: 20px;
+        }
+        #weatherInfo p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Weather App</h1>
+    <h2>Manbir Kheira - IT 2320 - Lab 8</h2>
+    <input type="text" id="zipCode" placeholder="Enter ZIP Code" value="44056">
+    <button id="getWeather">Get Weather</button>
+    <div id="weatherInfo">
+        <p>City: <span id="city"></span></p>
+        <p>Condition: <span id="condition"></span></p>
+        <p>Temperature: <span id="temperature"></span> °F</p>
+        <p>Wind: <span id="wind"></span> mph</p>
+        <p>Humidity: <span id="humidity"></span>%</p>
+        <p>Temp Min: <span id="tempMin"></span> °F</p>
+        <p>Temp Max: <span id="tempMax"></span> °F</p>
+    </div>
+    <script>
+        // Manbir Kheira - IT 2320 - Lab 8
+
+        $(document).ready(function() {
+            $('#getWeather').click(function() {
+                let zipCode = $('#zipCode').val();
+                let appid = '1b6fb21f97d156db853bcf26ac3fa2d4';
+                let url = `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&appid=${appid}&units=imperial`;
+
+                $.ajax({
+                    method: "GET",
+                    url: url,
+                    dataType: "json"
+                }).done(function(weatherResponse) {
+                    $('#city').text(weatherResponse.name);
+                    $('#condition').text(weatherResponse.weather[0].description);
+                    $('#temperature').text(Math.round(weatherResponse.main.temp));
+                    $('#wind').text(`${Math.round(weatherResponse.wind.speed)} mph, ${weatherResponse.wind.deg}°`);
+                    $('#humidity').text(weatherResponse.main.humidity);
+                    $('#tempMin').text(Math.round(weatherResponse.main.temp_min));
+                    $('#tempMax').text(Math.round(weatherResponse.main.temp_max));
+                }).fail(function() {
+                    alert("Invalid ZIP Code or API error. Please try again.");
+                });
+            });
+        });
+    </script>
+</body>
+</html>
