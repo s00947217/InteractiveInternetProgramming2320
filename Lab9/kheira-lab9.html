@@ -19,18 +19,30 @@
         // Colors for the squares and circles
         const colors = ['black', 'red', 'green', 'blue'];
 
-        // Draw squares in the top row and left column
+        // Draw squares in the top row
         for (let i = 0; i < colors.length; i++) {
             ctx.fillStyle = colors[i];
-            ctx.fillRect(0, i * 100, 100, 100); // Left column
             ctx.fillRect(i * 100, 0, 100, 100); // Top row
         }
 
-        // Draw circles in the top row and left column
+        // Draw squares in the left column
+        for (let i = 0; i < colors.length; i++) {
+            ctx.fillStyle = colors[i];
+            ctx.fillRect(0, i * 100, 100, 100); // Left column
+        }
+
+        // Draw circles in the top row
+        for (let i = 0; i < colors.length; i++) {
+            ctx.beginPath();
+            ctx.arc((i * 100) + 50, 50, 50, 0, 2 * Math.PI); // Top row
+            ctx.fillStyle = colors[i];
+            ctx.fill();
+        }
+
+        // Draw circles in the left column
         for (let i = 0; i < colors.length; i++) {
             ctx.beginPath();
             ctx.arc(50, (i * 100) + 50, 50, 0, 2 * Math.PI); // Left column
-            ctx.arc((i * 100) + 50, 50, 50, 0, 2 * Math.PI); // Top row
             ctx.fillStyle = colors[i];
             ctx.fill();
         }
