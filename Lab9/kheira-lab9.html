@@ -37,6 +37,7 @@
             ctx.arc((i * 100) + 50, 50, 50, 0, 2 * Math.PI); // Top row
             ctx.fillStyle = colors[i];
             ctx.fill();
+            ctx.stroke(); // Ensures the circles are visible
         }
 
         // Draw circles in the left column
@@ -45,6 +46,7 @@
             ctx.arc(50, (i * 100) + 50, 50, 0, 2 * Math.PI); // Left column
             ctx.fillStyle = colors[i];
             ctx.fill();
+            ctx.stroke(); // Ensures the circles are visible
         }
 
         // Draw text on the canvas
