@@ -4,10 +4,10 @@
     <style>
         canvas { border: 1px solid #c3c3c3; } /* Border style for the canvas */
     </style>
-    <title>Manbir Kheira - IT 2320 - Lab 9</title>
+    <title>Canvas Drawing</title>
 </head>
 <body>
-    <h2>Manbir Kheira - IT 2320 - Lab 9</h2>
+    <h2>Manbir Kheira - IT 2320 - Lab 10 - Classes for Canvas Objects</h2>
     <canvas id="myCanvas" width="800" height="600">
         Your browser does not support the canvas element.
     </canvas>
@@ -16,43 +16,71 @@
         var canvas = document.getElementById("myCanvas");
         var ctx = canvas.getContext("2d");
 
-        // Colors for the squares and circles
-        var colors = ['black', 'red', 'green', 'blue'];
+        // Rectangle class definition
+        class Rectangle {
+            constructor(x, y, ht, wd, color, filled) {
+                this.x = x;
+                this.y = y;
+                this.ht = ht;
+                this.wd = wd;
+                this.color = color;
+                this.filled = filled;
+            }
 
-        // Draw squares in the top row
-        for (var i = 0; i < colors.length; i++) {
-            ctx.fillStyle = colors[i];
-            ctx.fillRect(i * 100, 0, 100, 100); // Top row
+            draw(context) {
+                context.beginPath();
+                context.rect(this.x, this.y, this.wd, this.ht);
+                if (this.filled) {
+                    context.fillStyle = this.color;
+                    context.fill();
+                } else {
+                    context.strokeStyle = this.color;
+                    context.stroke();
+                }
+            }
         }
 
-        // Draw squares in the left column
-        for (var i = 0; i < colors.length; i++) {
-            ctx.fillStyle = colors[i];
-            ctx.fillRect(0, i * 100, 100, 100); // Left column
+        // Circle class definition
+        class Circle {
+            constructor(x, y, radius, color, filled) {
+                this.x = x;
+                this.y = y;
+                this.radius = radius;
+                this.color = color;
+                this.filled = filled;
+            }
+
+            draw(context) {
+                context.beginPath();
+                context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                if (this.filled) {
+                    context.fillStyle = this.color;
+                    context.fill();
+                } else {
+                    context.strokeStyle = this.color;
+                    context.stroke();
+                }
+            }
         }
 
-        // Draw circles in the top row
-        for (var i = 0; i < colors.length; i++) {
-            ctx.beginPath();
-            ctx.arc((i * 100) + 50, 50, 50, 0, 2 * Math.PI); // Top row
-            ctx.fillStyle = colors[i];
-            ctx.fill();
-            ctx.stroke(); // Ensures the circles are visible
+        // Draw a green filled rectangle (square) at the top-left corner
+        let greenFilledRectangle = new Rectangle(50, 50, 100, 100, 'green', true);
+        greenFilledRectangle.draw(ctx);
+
+        // Draw a red filled circle
+        let redFilledCircle = new Circle(300, 200, 100, 'red', true);
+        redFilledCircle.draw(ctx);
+
+        // Draw a black circle outline slightly lower and to the right of the red circle
+        let blackCircleOutline = new Circle(380, 280, 50, 'black', false);
+        blackCircleOutline.draw(ctx);
+
+        // Draw 10 iterations of blue rectangle outlines with more spacing for a 3D effect
+        for (let i = 0; i < 10; i++) {
+            let blueRectangleOutline = new Rectangle(500 + i * 20, 150 + i * 20, 100, 100, 'blue', false);
+            blueRectangleOutline.draw(ctx);
         }
 
-        // Draw circles in the left column
-        for (var i = 0; i < colors.length; i++) {
-            ctx.beginPath();
-            ctx.arc(50, (i * 100) + 50, 50, 0, 2 * Math.PI); // Left column
-            ctx.fillStyle = colors[i];
-            ctx.fill();
-            ctx.stroke(); // Ensures the circles are visible
-        }
-
-        // Draw text on the canvas
-        ctx.fillStyle = '#888888';
-        ctx.font = '20px Arial';
-        ctx.fillText('Lab 9 - Canvas', 150, 150); // Text position
     </script>
 </body>
 </html>
