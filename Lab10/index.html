@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        canvas { border: 1px solid #c3c3c3; } /* Border style for the canvas */
+    </style>
+    <title>Manbir Kheira - IT 2320 - Lab 10</title>
+</head>
+<body>
+    <h2>Manbir Kheira - IT 2320 - Lab 10</h2>
+    <canvas id="myCanvas" width="800" height="600">
+        Your browser does not support the canvas element.
+    </canvas>
+    <script>
+        // Get the canvas element and its context
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+
+        // Rectangle class definition
+        class Rectangle {
+            constructor(x, y, ht, wd, color, filled) {
+                this.x = x;
+                this.y = y;
+                this.ht = ht;
+                this.wd = wd;
+                this.color = color;
+                this.filled = filled;
+            }
+
+            draw(context) {
+                context.beginPath();
+                context.rect(this.x, this.y, this.wd, this.ht);
+                if (this.filled) {
+                    context.fillStyle = this.color;
+                    context.fill();
+                } else {
+                    context.strokeStyle = this.color;
+                    context.stroke();
+                }
+            }
+        }
+
+        // Circle class definition
+        class Circle {
+            constructor(x, y, radius, color, filled) {
+                this.x = x;
+                this.y = y;
+                this.radius = radius;
+                this.color = color;
+                this.filled = filled;
+            }
+
+            draw(context) {
+                context.beginPath();
+                context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                if (this.filled) {
+                    context.fillStyle = this.color;
+                    context.fill();
+                } else {
+                    context.strokeStyle = this.color;
+                    context.stroke();
+                }
+            }
+        }
+
+        // Draw a green filled rectangle (square) at the top-left corner
+        let greenFilledRectangle = new Rectangle(0, 0, 100, 100, 'green', true);
+        greenFilledRectangle.draw(ctx);
+
+        // Draw a red filled circle
+        let redFilledCircle = new Circle(200, 200, 100, 'red', true);
+        redFilledCircle.draw(ctx);
+
+        // Draw a black circle outline overlapping the red circle
+        let blackCircleOutline = new Circle(250, 250, 50, 'black', false);
+        blackCircleOutline.draw(ctx);
+
+        // Draw 10 iterations of blue rectangle outlines
+        for (let i = 0; i < 10; i++) {
+            let blueRectangleOutline = new Rectangle(450 + i * 10, 100 + i * 10, 100 - i * 10, 100 - i * 10, 'blue', false);
+            blueRectangleOutline.draw(ctx);
+        }
+
+        // Draw text on the canvas
+        ctx.fillStyle = '#000000';
+        ctx.font = '20px Arial';
+        ctx.fillText('Manbir Kheira - IT 2320 - Lab 10 - Classes for Canvas Objects', 50, 50);
+    </script>
+</body>
+</html>
